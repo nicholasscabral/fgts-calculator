@@ -1,0 +1,97 @@
+import { useFormik } from "formik";
+import styles from "../styles/calculator.module.css";
+import { Form, Select, DecimalNumberIn } from "antd";
+import { CalculatorFields } from "@/types/types";
+import { NumberInputWithPrefix } from "./inputs/decimal";
+
+const FormItem = Form.Item;
+
+const Calculator = () => {
+  const [form] = Form.useForm<CalculatorFields>();
+  const modalities = {
+    domestic: "Empregada(o) domestica",
+    learner: "Jovem aprendiz",
+    clt: "CLT padrao",
+  };
+
+  const { values, handleChange } = useFormik({
+    initialValues: {
+      modality: "",
+      totalIncome: "",
+      daysOfService: "",
+    },
+  });
+
+  const handleFinish = (values) => {
+    alert(JSON.stringify(values));
+  };
+
+  return (
+    <Form
+      name="CalculateFGTS"
+      layout="vertical"
+      form={form}
+      className={styles.form_container}
+      initialValues={values}
+      onFinish={handleFinish}
+    >
+      <FormItem name="modality" label="Modalide" className={styles.field}>
+        <Select
+          className={styles.select}
+          options={Object.entries(modalities).map(([value, label]) => {
+            return { label, value };
+          })}
+        />
+      </FormItem>
+      <FormItem name="totalIncome" label="Salario bruto">
+        <NumberInputWithPrefix prefix="R$" min={0} />
+      </FormItem>
+    </Form>
+  );
+
+  // return (
+  //   <div className={styles.form_container}>
+  //     <form autoComplete="off">
+  //       <div className="field">
+  //         <label htmlFor="modality">Modalide de contratação</label>
+  //         <select
+  //           className={styles.select}
+  //           name="modality"
+  //           value={values.modality}
+  //           onChange={handleChange}
+  //           placeholder="Informe sua modalidade de contratação"
+  //         >
+  //           {Object.entries(modalities).map(([key, value]) => {
+  //             return <option key={key}>{value}</option>;
+  //           })}
+  //         </select>
+  //       </div>
+  //       <div className="field">
+  //         <label htmlFor="totalIncome">Salario bruto</label>
+  //         <input
+  //           className={styles.input}
+  //           name="totalIncome"
+  //           type="text"
+  //           value={values.totalIncome}
+  //           onChange={handleChange}
+  //           placeholder="Informe seu salario bruto"
+  //         />
+  //       </div>
+  //       <div className="field">
+  //         <label htmlFor="daysOfService">Dias de serviço</label>
+  //         <input
+  //           className={styles.input}
+  //           name="daysOfService"
+  //           type="text"
+  //           value={values.daysOfService}
+  //           onChange={handleChange}
+  //           placeholder="Informe seu salario bruto"
+  //         />
+  //       </div>
+  //       <button className={styles.submit}>Calcular FGTS</button>
+  //     </form>
+  //   </div>
+  // );
+};
+
+export default Calculator;

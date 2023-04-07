@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.navbar}>
-        <h1>Calculador de FGTS</h1>
+        <h1>Calculadora de FGTS</h1>
       </div>
     </>
   );
