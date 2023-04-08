@@ -9,27 +9,39 @@ import SalaryField from "./salary-field";
 const FormItem = Form.Item;
 const InputGroup = Input.Group;
 
+const modalities = {
+  domestic: "Empregada(o) domestica",
+  learner: "Jovem aprendiz",
+  clt: "CLT padrao",
+};
+
 const Calculator = () => {
   const [form] = Form.useForm<CalculatorFields>();
-  const [salaryFields, setSalaryFields] = useState([<SalaryField key={0} />]);
   const [salaryFieldsValues, setSalaryFieldsValues] = useState([
     { totalIncome: 0, daysOfService: 0 },
   ]);
-
-  const modalities = {
-    domestic: "Empregada(o) domestica",
-    learner: "Jovem aprendiz",
-    clt: "CLT padrao",
+  const handleSalaryFieldChange = (index, value) => {
+    const newSalaryFieldsValues = [...salaryFieldsValues];
+    newSalaryFieldsValues[index] = value;
+    setSalaryFieldsValues(newSalaryFieldsValues);
   };
+  const [salaryFields, setSalaryFields] = useState([
+    <SalaryField key={0} index={0} onChange={handleSalaryFieldChange} />,
+  ]);
 
-  const handleSubmit = (values) => {
-    alert(JSON.stringify(values));
+  const handleSubmit = (values: any) => {
+    salaryFieldsValues.forEach((item, index) => console.log(index, { item }));
+    alert(JSON.stringify({ values, salaryFieldsValues }));
   };
 
   const addNewSalaryField = () => {
     setSalaryFields([
       ...salaryFields,
-      <SalaryField key={salaryFields.length} />,
+      <SalaryField
+        key={salaryFields.length}
+        index={salaryFields.length}
+        onChange={handleSalaryFieldChange}
+      />,
     ]);
   };
 
@@ -45,15 +57,12 @@ const Calculator = () => {
       layout="vertical"
       form={form}
       className={styles.form_container}
-      // initialValues={values}
-      onFinish={handleSubmit}
+      onFinish={(values) => handleSubmit(values)}
     >
-      <FormItem
-        name="modality"
-        label="Vinculo empragaticio"
-        className={styles.field}
-      >
+      <FormItem name="employmentRelationship">
+        <h3>Vinculo empregaticio</h3>
         <Select
+          style={{ marginTop: "10px" }}
           placeholder="Selecione o seu vinculo empregaticio"
           options={Object.entries(modalities).map(([value, label]) => {
             return { label, value };
@@ -62,7 +71,13 @@ const Calculator = () => {
       </FormItem>
       <h3>Periodos de remuneração</h3>
       {salaryFields.map((item) => item)}
-      <InputGroup>
+      <InputGroup
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <FormItem>
           <Button type="text" onClick={() => addNewSalaryField()}>
             + Adicionar
@@ -73,13 +88,21 @@ const Calculator = () => {
         </FormItem>
       </InputGroup>
 
-      <Button
-        type="primary"
-        style={{ maxWidth: "400px" }}
-        // onClick={handleSubmit(values)}
+      <FormItem
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        Calcular FGTS
-      </Button>
+        <Button
+          type="primary"
+          style={{ maxWidth: "400px" }}
+          onClick={() => form.submit()}
+        >
+          Calcular FGTS
+        </Button>
+      </FormItem>
     </Form>
   );
 };
