@@ -1,6 +1,7 @@
 import { Form, Input } from "antd";
 import { NumberInputWithPrefix } from "./inputs/decimal";
 import { useState } from "react";
+import { currencyFormatter } from "@/formatters/currency";
 
 const FormItem = Form.Item;
 const InputGroup = Input.Group;
@@ -27,22 +28,33 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
   return (
     <InputGroup
       compact
-      style={{ margin: "15px 0px 10px 0px", borderBottom: "1px solid black" }}
+      style={{
+        margin: "15px 0px 10px 0px",
+        borderBottom: "1px solid black",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       <FormItem
         name="totalIncome"
         label="Salario bruto"
-        style={{ marginRight: 20 }}
+        style={{ marginRight: 20, width: "50%" }}
       >
         <NumberInputWithPrefix
           prefix="R$"
           value={totalIncome}
           onChange={handleTotalIncomeChange}
+          formatter={currencyFormatter}
         />
       </FormItem>
-      <FormItem name="daysOfService" label="Tempo de serviço (em meses)">
+      <FormItem
+        name="daysOfService"
+        label="Tempo de serviço"
+        style={{ width: "50%" }}
+      >
         <NumberInputWithPrefix
-          prefix="Mes"
+          prefix="Meses"
           value={daysOfService}
           onChange={handleDaysOfServiceChange}
         />
