@@ -1,7 +1,6 @@
-import { Modality } from "./modality";
+import { Input, Form } from "antd";
 
-export interface CalculatorFields {
-  totalIncome: number;
-  daysOfService: number;
-  modality: keyof typeof Modality;
-}
+const InputGroup = Input.Group;
+const FormItem = Form.Item;
+
+export { InputGroup, FormItem };

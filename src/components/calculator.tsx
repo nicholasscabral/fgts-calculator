@@ -1,13 +1,9 @@
-import { useFormik } from "formik";
 import styles from "../styles/calculator.module.css";
 import { Form, Select, Button, Radio, Input } from "antd";
-import { CalculatorFields } from "@/types/types";
-import { NumberInputWithPrefix } from "./inputs/decimal";
 import { useState } from "react";
 import SalaryField from "./salary-field";
-
-const FormItem = Form.Item;
-const InputGroup = Input.Group;
+import { FGTSCalculator } from "@/types/calculator";
+import { FormItem, InputGroup } from "@/types/types";
 
 const modalities = {
   domestic: "Empregada(o) domestica",
@@ -16,15 +12,17 @@ const modalities = {
 };
 
 const Calculator = () => {
-  const [form] = Form.useForm<CalculatorFields>();
+  const [form] = Form.useForm<FGTSCalculator>();
   const [salaryFieldsValues, setSalaryFieldsValues] = useState([
     { totalIncome: 0, daysOfService: 0 },
   ]);
+
   const handleSalaryFieldChange = (index, value) => {
     const newSalaryFieldsValues = [...salaryFieldsValues];
     newSalaryFieldsValues[index] = value;
     setSalaryFieldsValues(newSalaryFieldsValues);
   };
+
   const [salaryFields, setSalaryFields] = useState([
     <SalaryField key={0} index={0} onChange={handleSalaryFieldChange} />,
   ]);

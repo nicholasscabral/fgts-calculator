@@ -2,9 +2,7 @@ import { Form, Input } from "antd";
 import { NumberInputWithPrefix } from "./inputs/decimal";
 import { useState } from "react";
 import { currencyFormatter } from "@/formatters/currency";
-
-const FormItem = Form.Item;
-const InputGroup = Input.Group;
+import { FormItem, InputGroup } from "@/types/types";
 
 interface IndexUpdateValues {
   index: number;

@@ -1,8 +1,7 @@
+import { InputGroup } from "@/types/types";
 import { Input, InputNumber, InputNumberProps } from "antd";
 import { Formatter } from "antd/es/statistic/utils";
 import React from "react";
-
-const InputGroup = Input.Group;
 
 type NumberInputWithPrefix = InputNumberProps<number> & {
   prefix: string;
