@@ -7,11 +7,14 @@ type NumberInputWithPrefix = InputNumberProps<number> & {
   prefix: string;
 };
 
-const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({ prefix }) => {
+const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({
+  prefix,
+  onChange,
+}) => {
   return (
     <InputGroup style={{ display: "flex" }} compact>
       <Input style={{ width: "50px" }} value={prefix} disabled />
-      <InputNumber style={{ flex: 1 }} />
+      <InputNumber style={{ flex: 1 }} min={0} onChange={onChange} />
     </InputGroup>
   );
 };
