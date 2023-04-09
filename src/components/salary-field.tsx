@@ -41,6 +41,7 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
       >
         <NumberInputWithPrefix
           prefix="R$"
+          placeholder="0,00"
           value={totalIncome}
           onChange={handleTotalIncomeChange}
           formatter={currencyFormatter}
@@ -53,6 +54,7 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
       >
         <NumberInputWithPrefix
           prefix="Meses"
+          placeholder="0"
           value={daysOfService}
           onChange={handleDaysOfServiceChange}
         />

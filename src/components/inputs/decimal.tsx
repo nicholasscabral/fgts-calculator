@@ -6,12 +6,14 @@ import React from "react";
 type NumberInputWithPrefix = InputNumberProps<number> & {
   prefix: string;
   formatter?: Formatter;
+  placeholder?: string;
 };
 
 const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({
   prefix,
   onChange,
   formatter,
+  placeholder,
 }) => {
   const width = prefix.length > 3 ? 65 : 40;
   return (
@@ -22,6 +24,7 @@ const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({
         min={0}
         onChange={onChange}
         formatter={formatter}
+        placeholder={placeholder}
       />
     </InputGroup>
   );
