@@ -57,7 +57,7 @@ const Calculator = () => {
       className={styles.form_container}
       onFinish={(values) => handleSubmit(values)}
     >
-      <FormItem name="employmentRelationship">
+      <FormItem name="employmentRelationship" style={{ width: "100%" }}>
         <h3>Vinculo empregaticio</h3>
         <Select
           style={{ marginTop: "10px" }}
@@ -67,8 +67,10 @@ const Calculator = () => {
           })}
         />
       </FormItem>
-      <h3>Periodos de remuneração</h3>
-      {salaryFields.map((item) => item)}
+      <FormItem style={{ width: "100%" }}>
+        <h3>Periodos de remuneração</h3>
+        {salaryFields.map((item) => item)}
+      </FormItem>
       <InputGroup
         style={{
           display: "flex",
@@ -78,14 +80,13 @@ const Calculator = () => {
       >
         <FormItem>
           <Button type="text" onClick={() => addNewSalaryField()}>
-            + Adicionar
+            <strong>+ Adicionar</strong>
           </Button>
           <Button type="text" danger onClick={() => removeLastSalaryField()}>
-            - Remover
+            <strong> - Remover</strong>
           </Button>
         </FormItem>
       </InputGroup>
-
       <FormItem
         style={{
           display: "flex",
@@ -95,7 +96,7 @@ const Calculator = () => {
       >
         <Button
           type="primary"
-          style={{ maxWidth: "400px" }}
+          className={styles.button}
           onClick={() => form.submit()}
         >
           Calcular FGTS

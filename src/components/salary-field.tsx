@@ -36,8 +36,8 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
     >
       <FormItem
         name="totalIncome"
-        label="Salario bruto"
-        style={{ marginRight: 20, width: "50%" }}
+        label="Salario bruto:"
+        style={{ width: "47.5%", marginRight: "5%" }}
       >
         <NumberInputWithPrefix
           prefix="R$"
@@ -49,8 +49,8 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
       </FormItem>
       <FormItem
         name="daysOfService"
-        label="Tempo de serviço"
-        style={{ width: "50%" }}
+        label="Tempo de serviço:"
+        style={{ width: "47.5%" }}
       >
         <NumberInputWithPrefix
           prefix="Meses"
