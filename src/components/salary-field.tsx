@@ -1,7 +1,6 @@
-import { Form, Input } from "antd";
 import { NumberInputWithPrefix } from "./inputs/decimal";
 import { useState } from "react";
-import { currencyFormatter } from "@/formatters/currency";
+import { currencyFormatter, currencyParser } from "@/formatters/currency";
 import { FormItem, InputGroup } from "@/types/types";
 
 interface IndexUpdateValues {
@@ -10,17 +9,17 @@ interface IndexUpdateValues {
 }
 
 const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [daysOfService, setDaysOfService] = useState(0);
+  const [income, setIncome] = useState(0);
+  const [monthsOfService, setMonthsOfService] = useState(0);
 
-  const handleTotalIncomeChange = (value: any) => {
-    setTotalIncome(value);
-    onChange(index, { totalIncome: value, daysOfService });
+  const handleIncomeChange = (value: any) => {
+    setIncome(value);
+    onChange(index, { income: value, monthsOfService });
   };
 
-  const handleDaysOfServiceChange = (value: any) => {
-    setDaysOfService(value);
-    onChange(index, { totalIncome, daysOfService: value });
+  const handleMonthsOfServiceChange = (value: any) => {
+    setMonthsOfService(value);
+    onChange(index, { income, monthsOfService: value });
   };
 
   return (
@@ -35,28 +34,29 @@ const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
       }}
     >
       <FormItem
-        name="totalIncome"
+        name="income"
         label="Salario bruto:"
         style={{ width: "47.5%", marginRight: "5%" }}
       >
         <NumberInputWithPrefix
           prefix="R$"
           placeholder="0,00"
-          value={totalIncome}
-          onChange={handleTotalIncomeChange}
+          value={income}
+          onChange={handleIncomeChange}
           formatter={currencyFormatter}
+          parser={currencyParser}
         />
       </FormItem>
       <FormItem
-        name="daysOfService"
+        name="monthsOfService"
         label="Tempo de serviço:"
         style={{ width: "47.5%" }}
       >
         <NumberInputWithPrefix
           prefix="Meses"
           placeholder="0"
-          value={daysOfService}
-          onChange={handleDaysOfServiceChange}
+          value={monthsOfService}
+          onChange={handleMonthsOfServiceChange}
         />
       </FormItem>
     </InputGroup>

@@ -13,6 +13,7 @@ const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({
   prefix,
   onChange,
   formatter,
+  parser,
   placeholder,
 }) => {
   const width = prefix.length > 3 ? 65 : 40;
@@ -22,6 +23,7 @@ const NumberInputWithPrefix: React.FC<NumberInputWithPrefix> = ({
       <InputNumber
         style={{ flex: 1 }}
         min={0}
+        parser={parser}
         onChange={onChange}
         formatter={formatter}
         placeholder={placeholder}
