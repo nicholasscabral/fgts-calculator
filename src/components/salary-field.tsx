@@ -2,24 +2,26 @@ import { NumberInputWithPrefix } from "./inputs/decimal";
 import { useState } from "react";
 import { currencyFormatter, currencyParser } from "@/formatters/currency";
 import { FormItem, InputGroup } from "@/types/types";
+import { SalaryFieldValues } from "@/types/calculator";
 
-interface IndexUpdateValues {
-  index: number;
-  onChange: Function;
+interface SalaryFieldProps {
+  key: number;
+  updateSalaryField: Function;
+  data: SalaryFieldValues;
 }
 
-const SalaryField = ({ index, onChange }: IndexUpdateValues) => {
-  const [income, setIncome] = useState(0);
-  const [monthsOfService, setMonthsOfService] = useState(0);
+const SalaryField = ({ key, updateSalaryField, data }: SalaryFieldProps) => {
+  const [income, setIncome] = useState(data.income);
+  const [monthsOfService, setMonthsOfService] = useState(data.monthsOfService);
 
   const handleIncomeChange = (value: any) => {
     setIncome(value);
-    onChange(index, { income: value, monthsOfService });
+    updateSalaryField(key, { income: value, monthsOfService });
   };
 
   const handleMonthsOfServiceChange = (value: any) => {
     setMonthsOfService(value);
-    onChange(index, { income, monthsOfService: value });
+    updateSalaryField(key, { income, monthsOfService: value });
   };
 
   return (
