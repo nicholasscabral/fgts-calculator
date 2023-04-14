@@ -5,11 +5,8 @@ import SalaryField from "./salary-field";
 import { FGTSCalculator, SalaryFieldValues } from "@/types/calculator";
 import { FormItem, InputGroup } from "@/types/types";
 import { EmploymentRelationship } from "@/types/employment-relationship";
-
-const emptySalaryFieldValues: SalaryFieldValues = {
-  income: 0,
-  monthsOfService: 0,
-};
+import { emptySalaryFieldValues } from "@/utils/constants";
+import { getEmploymentRelationshipOptions } from "@/utils/calculator-helper";
 
 const Calculator = () => {
   const [form] = Form.useForm<FGTSCalculator>();
@@ -58,9 +55,7 @@ const Calculator = () => {
           onChange={(value) => {
             setEmploymentRelationship(value);
           }}
-          options={Object.entries(modalities).map(([value, label]) => {
-            return { label, value };
-          })}
+          options={getEmploymentRelationshipOptions()}
         />
       </FormItem>
       <FormItem style={{ width: "100%" }}>
