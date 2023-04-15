@@ -1,6 +1,7 @@
-const currencyFormatter = (value: any) =>
+const currencyFormatter = (value: any, useStyle: boolean = false) =>
   new Intl.NumberFormat("pt-BR", {
     currency: "BRL",
+    style: useStyle ? "currency" : undefined,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);

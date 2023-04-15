@@ -5,23 +5,23 @@ import { FormItem, InputGroup } from "@/types/types";
 import { SalaryFieldValues } from "@/types/calculator";
 
 interface SalaryFieldProps {
-  key: number;
+  index: number;
   updateSalaryField: Function;
   data: SalaryFieldValues;
 }
 
-const SalaryField = ({ key, updateSalaryField, data }: SalaryFieldProps) => {
+const SalaryField = ({ index, updateSalaryField, data }: SalaryFieldProps) => {
   const [income, setIncome] = useState(data.income);
   const [monthsOfService, setMonthsOfService] = useState(data.monthsOfService);
 
   const handleIncomeChange = (value: any) => {
     setIncome(value);
-    updateSalaryField(key, { income: value, monthsOfService });
+    updateSalaryField(index, { income: value, monthsOfService });
   };
 
   const handleMonthsOfServiceChange = (value: any) => {
     setMonthsOfService(value);
-    updateSalaryField(key, { income, monthsOfService: value });
+    updateSalaryField(index, { income, monthsOfService: value });
   };
 
   return (
@@ -45,7 +45,7 @@ const SalaryField = ({ key, updateSalaryField, data }: SalaryFieldProps) => {
           placeholder="0,00"
           value={income}
           onChange={handleIncomeChange}
-          formatter={currencyFormatter}
+          formatter={(v: any) => currencyFormatter(v)}
           parser={currencyParser}
         />
       </FormItem>

@@ -19,6 +19,13 @@ export const displayNameByEmploymentRelationship: Record<
   [EmploymentRelationship.domestic]: "Empregada(o) domestica",
 };
 
+export const translateLabel: Record<string, string> = {
+  monthlyDeposit: "Deposito mensal",
+  monthlyDeposits: "Depositos mensais",
+  estimatedbalance: "Saldo estimado",
+  aliquot: "Aliquota mensal",
+};
+
 export const emptySalaryFieldValues: SalaryFieldValues = {
   income: 0,
   monthsOfService: 0,
