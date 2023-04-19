@@ -21,19 +21,23 @@ export const formatResult = (data: any): Result[] => {
     console.log(label, value);
     return {
       label: translateLabel[label],
-      value: label == "aliquot" ? `${value}%` : currencyFormatter(value, true),
+      value: Array.isArray(value)
+        ? value.map((a) => currencyFormatter(a, true))
+        : label == "aliquot"
+        ? `${value}%`
+        : currencyFormatter(value, true),
     };
   });
 };
 
 export const calculateOneSalaryField = (
-  [{ income, monthsOfService }]: SalaryFieldValues[],
+  { income, monthsOfService }: SalaryFieldValues,
   aliquot: number
 ): any => {
   const monthlyDeposit = income * aliquot;
-  const estimatedbalance = monthlyDeposit * monthsOfService;
+  const estimatedBalance = monthlyDeposit * monthsOfService;
   return {
-    estimatedbalance,
+    estimatedBalance,
     monthlyDeposit,
   };
 };
@@ -42,7 +46,17 @@ export const calculateMultipleSalaryFields = (
   fields: SalaryFieldValues[],
   aliquot: number
 ) => {
-  return {};
+  const salaryField = fields.map((field) =>
+    calculateOneSalaryField(field, aliquot)
+  );
+  const totalEstimatedBalance = salaryField.reduce(
+    (acc, { estimatedBalance }) => acc + estimatedBalance,
+    0
+  );
+  return {
+    estimatedBalance: totalEstimatedBalance,
+    monthlyDeposits: salaryField.map(({ monthlyDeposit }) => monthlyDeposit),
+  };
 };
 
 export const calculateFGTS = (
@@ -56,7 +70,7 @@ export const calculateFGTS = (
 
   const result = multipleSalaryFields
     ? calculateMultipleSalaryFields(salaryFields, aliquot)
-    : calculateOneSalaryField(salaryFields, aliquot);
+    : calculateOneSalaryField(salaryFields[0], aliquot);
 
   return formatResult({
     ...result,

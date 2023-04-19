@@ -22,7 +22,7 @@ export const displayNameByEmploymentRelationship: Record<
 export const translateLabel: Record<string, string> = {
   monthlyDeposit: "Deposito mensal",
   monthlyDeposits: "Depositos mensais",
-  estimatedbalance: "Saldo estimado",
+  estimatedBalance: "Saldo estimado",
   aliquot: "Aliquota mensal",
 };
 
