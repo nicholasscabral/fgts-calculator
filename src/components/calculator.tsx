@@ -75,7 +75,7 @@ const Calculator = () => {
             />
           ))}
         </FormItem>
-        {/* <InputGroup
+        <InputGroup
           style={{
             display: "flex",
             justifyContent: "center",
@@ -90,7 +90,7 @@ const Calculator = () => {
               <strong> - Remover</strong>
             </Button>
           </FormItem>
-        </InputGroup> */}
+        </InputGroup>
         <FormItem
           style={{
             display: "flex",
