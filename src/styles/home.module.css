@@ -6,3 +6,43 @@
   align-items: center;
   justify-content: flex-start;
 }
+
+.main {
+  display: grid;
+  grid-template-columns: 20% 58% 20%;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  max-width: 980px;
+  padding: 0rem 3rem 3rem 3rem;
+
+}
+
+.info {
+  width: 100%;
+  max-width: 980px;
+  padding: 1.5rem 3rem;
+  text-align: left;
+}
+
+.info p {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  word-spacing: 0.3rem;
+  line-height: 1.8rem;
+}
+
+.info ul {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  word-spacing: 0.3rem;
+  line-height: 1.6rem;
+}
+
+.info ul li b {
+  font-size: 1.1rem;
+}
